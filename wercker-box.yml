@@ -1,0 +1,17 @@
+name: golang
+version: 0.0.1
+inherits: wercker/golang@1.3.1
+type: main
+platform: ubuntu@12.04
+description: Wercker box for golang project with gox and goveralls.
+keywords:
+    - go
+    - golang
+script: |
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt-get install -y zip
+    go get -u -v github.com/modocache/gover
+    go get -u -v github.com/mattn/goveralls
+    go get -u -v github.com/mitchellh/gox
+    sudo -E env PATH=$GOPATH/bin:$PATH gox -build-toolchain
